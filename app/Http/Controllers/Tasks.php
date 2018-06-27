@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 use App\Task;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
+
 
 class Tasks extends Controller
 {
@@ -25,7 +26,7 @@ class Tasks extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function store(Request $request)
+  public function store(TaskRequest $request)
   {
     // get post request data for the task
     $data = $request->only(["task"]);
@@ -33,7 +34,7 @@ class Tasks extends Controller
     // create an task with data and store in DB
     $task = Task::create($data);
 
-    return new TaskResource($task)
+    return new TaskResource($task);
   }
 
   /**
@@ -42,7 +43,7 @@ class Tasks extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function complete(Request $request, Task $task)
+  public function complete(TaskRequest $request, Task $task)
   {
     // get the request data - this is getting information from the app, about its completed status (true/false) and assigning it to the data variable
     $data = $request->only(["completed"]);
@@ -51,7 +52,7 @@ class Tasks extends Controller
     $task->fill($data)->save();
 
     // return the updated version
-    return new TaskResource($task)
+    return new TaskResource($task);
   }
 
   /**
@@ -61,7 +62,7 @@ class Tasks extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request, Task $task)
+  public function update(TaskRequest $request, Task $task)
   {
     // get the request data
     $data = $request->only(["task"]);
@@ -70,7 +71,7 @@ class Tasks extends Controller
     $task->fill($data)->save();
 
     // return the updated version
-    return new TaskResource($task)
+    return new TaskResource($task);
   }
 
   /**
