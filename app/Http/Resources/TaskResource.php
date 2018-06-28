@@ -14,8 +14,10 @@ class TaskResource extends JsonResource
    */
   public function toArray($request)
   {
-    "id" => $this->id,
-    "task" => $this->task,
-    //do we need to return completed to the app?
+    return [
+      "id" => $this->id,
+      "task" => $this->task,
+      //do we need to return completed to the app?
+    ];
   }
 }
