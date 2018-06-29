@@ -6,6 +6,8 @@ use App\Task;
 use App\Http\Requests\TaskRequest;
 use App\Http\Resources\TaskResource;
 
+use Illuminate\Http\Request;
+
 
 class Tasks extends Controller
 {
@@ -43,7 +45,7 @@ class Tasks extends Controller
    * @param  int  $id
    * @return \Illuminate\Http\Response
    */
-  public function complete(TaskRequest $request, Task $task)
+  public function complete(Request $request, Task $task)
   {
     // get the request data - this is getting information from the app, about its completed status (true/false) and assigning it to the data variable
     $data = $request->only(["completed"]);

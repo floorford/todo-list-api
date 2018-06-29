@@ -17,7 +17,7 @@ class TaskResource extends JsonResource
     return [
       "id" => $this->id,
       "task" => $this->task,
-      //do we need to return completed to the app?
+      "completed" => $this->completed,
     ];
   }
 }
